@@ -23,6 +23,7 @@
             <li><a class="dropdown-item" href="switch.php">Switch</a></li>
             <li><a class="dropdown-item" href="array.php">Array/Vetor</a></li>
             <li><a class="dropdown-item" href="form.php">Form</a></li>
+            <li><a class="dropdown-item" href="login.php">Login</a></li>
           </ul>
         </li>
                 </ul>
