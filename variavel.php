@@ -1,18 +1,6 @@
 <?php
-    include "./nav.php";
+    include "./componentes/header.php";
 ?>
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Váriavel</title>
-    <link href="bootstrap.min.css" rel="stylesheet">
-
-
-</head>
-<body style="overflow-x:hidden">
     <div class="container">
         <h1>Váriavel</h1>
                 +<div class="-">
@@ -99,7 +87,6 @@
         ?>
 
 
-
-    <script src="bootstrap.bundle.min.js" ></script>
-</body>
-</html>
+<?php  
+    include "./componentes/footer.php"
+?>
