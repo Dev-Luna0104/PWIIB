@@ -37,8 +37,13 @@
               <li><a class="dropdown-item" href="login.php">Login</a></li>
             </ul>
           </li>
-                  </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="./dados/instalar.php" > 
+              Instalar o banco 
+            </a>
+          </li>
+        </ul>
 
-              </div>
-          </div>
-      </nav>
+    </div>
+  </div>
+</nav>
