@@ -13,15 +13,6 @@
     // todas usuarios do banco de dados
     $usuarios = $repo->buscarTodos();
 
-    //foreach serve para ler todos os usuarios
-    // vindo do banco em formato de array chave e valor
-    foreach ($usuarios as $item ) {
-        echo "<h1>Login: " .$item['LOGIN'].
-            "   Senha: " .$item['ID'].
-            "   Ativo: " . $item['ATIVO'],
-            "</h1><br>";
-        
-    }
 ?>
 
 <div class="row">
@@ -60,7 +51,23 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+
+                            <?php
+
+                                //foreach serve para ler todos os usuarios
+                                // vindo do banco em formato de array chave e valor
+                                foreach ($usuarios as $item ) {
+                                    echo "<tr>
+                                            <td>$item[ID]</td>
+                                           <td>$item[LOGIN]</td>
+                                           <td>$item[ATIVO]</td>
+                                        </tr>";
+                                    
+                                }
+                            ?>
+
+                        </tbody>
                     </table>
                 </div>
             </div>
