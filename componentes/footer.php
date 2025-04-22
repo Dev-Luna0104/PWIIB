@@ -1,3 +1,5 @@
+
+</div> <!-- fechamento da div header -->
 <footer style=" margin-top: 30px ; ">
     <div 
     class="  position-fixed bottom-0 w-100 bg-dark " 
