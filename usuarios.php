@@ -25,7 +25,7 @@
                 <div class="row">
 
                     <div class="col-4">
-                        <a href="" class="btn btn-success">
+                        <a href="new_user.php" class="btn btn-success">
                             Novo usuário
                         </a>
                     </div>
