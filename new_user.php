@@ -11,7 +11,7 @@
         <label for="senha">senha</label>
         <input type="password" name="senha" id="senha" class="form-control password">
             <br>    
-        <input type="checkbox" name="ativo" value="Usuário ativo">
+        <input type="checkbox" name="ativo" value="true">
         Usuário ativo
             <br><br>
         <button type="submit" name="salvar_usuario" class="btn btn-primary">
