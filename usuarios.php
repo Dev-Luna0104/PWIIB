@@ -63,8 +63,12 @@
                                            <td>$item[LOGIN]</td>
                                            <td>$item[ATIVO]</td>
                                            <td>
-                                                <a class='btn btn-danger' href='./dados/excluir_usuario.php?id=".$item['ID']."'>
+                                                <a class='btn btn-outline-danger' href='./dados/excluir_usuario.php?id=".$item['ID']."'>
                                                 Excluir
+                                                </a>
+
+                                                <a class='btn btn-outline-warning' href='./editar_usuario.php?id=".$item['ID']."'>
+                                                    Editar
                                                 </a>
                                            </td>
                                         </tr>";

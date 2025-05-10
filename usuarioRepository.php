@@ -42,6 +42,14 @@ class UsuarioRepository {
         $preparar->execute();
     }
 
+    public function Editar($login,$id,$ativo){
+        $sql = "UPDATE usuarios SET LOGIN =?, ATIVO = ? WHERE ID = ?";
+        $stmt = $this->conexao->prepare($sql);
+        $stmt->bind_param("sii", $login,$ativo,$id);
+
+        $stmt->execute();
+    }
+
 }
 
 ?>
