@@ -39,7 +39,7 @@
       </li>
       
       <li class="nav-item">
-        <a class="nav-link text-light" href="./dados/instalar.php" > 
+        <a class="nav-link text-light" href="./dados/instalar_BQ.php" > 
           Instalar o banco 
         </a>
       </li>
