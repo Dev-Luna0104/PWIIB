@@ -50,6 +50,20 @@ class UsuarioRepository {
         $stmt->execute();
     }
 
+    public function Pesquisar($busca){
+
+        $sql = "SELECT * FROM usuarios WHERE Login LIKE '%$busca%' ";
+        $result = $this->conexao->query($sql);
+
+        $usuarios = [];
+
+        while($row = $result->fetch_assoc()) {
+            array_push($usuarios, $row);
+        }
+        return $usuarios;
+    }
+
+
 }
 
 ?>

@@ -5,13 +5,19 @@
     //inclui o arquivo da classe Repository do usuario
     require_once './usuarioRepository.php';
 
+
+
     //Cria um objeto do tipo UsuarioRepository.php chamado repo
     //E recebe a conexão do banco de dados
     $repo = new UsuarioRepository($conexao);
 
-    //chamei o metado BuscarTodas para puxar
-    // todas usuarios do banco de dados
-    $usuarios = $repo->buscarTodos();
+    if(isset($_GET['busca']) && !empty($_GET['busca']) ){
+        $usuarios = $repo->Pesquisar($_GET['busca']);
+    }else{
+        //chamei o metado BuscarTodas para puxar
+        // todas usuarios do banco de dados
+        $usuarios = $repo->buscarTodos();
+    }
 
 ?>
 
@@ -21,26 +27,29 @@
             <div class="card-header">
                 <b>lista de usuários</b>
             </div>
-            <div class="card-header">
-                <div class="row">
+            <div class="card-body">
 
-                    <div class="col-4">
-                        <a href="new_user.php" class="btn btn-success">
-                            Novo usuário
-                        </a>
+                <form action="usuarios.php" method="get">
+                    <div class="row">
+
+                        <div class="col-4">
+                            <a href="new_user.php" class="btn btn-success">
+                                Novo usuário
+                            </a>
+                        </div>
+
+                        <div class="col-4">
+                            <input  name="busca" class="form-control">
+                        </div>
+
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary">
+                                Pesquisar
+                            </button>
+                        </div>
+
                     </div>
-
-                    <div class="col-4">
-                        <input  name="busca" class="form-control">
-                    </div>
-
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary">
-                            Lista de usuárioas
-                        </button>
-                    </div>
-
-                </div>
+                </form>
                 <div class="row">
                     <table class="table table-striped table-hover">
                         <thead>
