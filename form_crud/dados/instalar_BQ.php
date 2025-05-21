@@ -18,7 +18,7 @@ $conexao->query($sql); $sql=
     ID INT PRIMARY KEY AUTO_INCREMENT,
     DISCIPLINA VARCHAR(100)        
 );"
-;$conexao->query($sql); $sql=
+;$conex ao->query($sql); $sql=
 "CREATE TABLE PERGUNTAS(
     ID INT PRIMARY KEY AUTO_INCREMENT,
     PERGUNTA TEXT NOT NULL,
