@@ -1,4 +1,4 @@
-<?php
+<?php 
     include "./componentes/header.php";
     include "./dados/conexao.php";
 

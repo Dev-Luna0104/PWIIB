@@ -1,4 +1,4 @@
-
+<?php include "./logado.php"; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="./componentes/bootstrap.min.css" rel="stylesheet">
     <style>
       li{
         list-style: none;
@@ -23,7 +23,7 @@
     <ul style="display:flex; gap:15px;" >
       <li class="nav-item dropdown text-light">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          php
+          PhP
         </a>
         
         <ul class="dropdown-menu">
@@ -37,9 +37,31 @@
           <li><a class="dropdown-item" href="login.php">Login</a></li>
         </ul>
       </li>
-      
+
+      <li class="nav-item dropdown text-light">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Usuários
+        </a>
+        
+        <ul class="dropdown-menu">
+          <li><a href="./disciplinas.php" class="dropdown-item">Disciplinas</a></li>
+          <li><a href="./referencias.php" class="dropdown-item">Referencias</a></li>
+        </ul>
+      </li>
+      <?php
+      if (basename($_SERVER['PHP_SELF']) != 'login.php') {
+        ?>
+        <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                <li class="nav-item text-white">
+                    Bem vindo <?php echo $_SESSION["Nome"]; ?> <a href="logoff.php"> Faça o logoff aqui </a>
+                </li>
+        </ul>
+
+        <?php
+      }
+?>
       <li class="nav-item">
-        <a class="nav-link text-light" href="./dados/instalar_BQ.php" > 
+        <a class="nav-link text-light" href="./dados/instalar.php" > 
           Instalar o banco 
         </a>
       </li>
