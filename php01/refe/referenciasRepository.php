@@ -21,7 +21,7 @@ class referenciasRepository {
 
     public function buscarPorId($id) {
         $stmt = $this->conexao->prepare(
-            "SELECT * FROM referencias WHERE id = ?");
+            "SELECT * FROM REFERENCIAS WHERE id = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
 
@@ -33,7 +33,7 @@ class referenciasRepository {
     {
         
         
-        $sql = "INSERT INTO referencias (nome) 
+        $sql = "INSERT INTO REFERENCIAS (nome) 
                 VALUES (?);";
                 $stmt = $this->conexao->prepare($sql);
                 $stmt->bind_param("s", $nome);
@@ -42,7 +42,7 @@ class referenciasRepository {
 
     public function excluiReferencias($id)
     {
-        $sql = "DELETE FROM referencias where id = ?";
+        $sql = "DELETE FROM REFERENCIAS where id = ?";
         $preparar = $this->conexao->prepare($sql);
         $preparar->bind_param("i",$id);
         $preparar->execute();
@@ -50,9 +50,21 @@ class referenciasRepository {
 
     public function Editar($nome, $id )
     {
-        $sql = "UPDATE referencias set NOME = ?, where ID = ?";
+        $sql = "UPDATE REFERENCIAS set NOME = ? where ID = ?";
                 $stmt = $this->conexao->prepare($sql);
                 $stmt->bind_param("si", $nome,$id);
                 $stmt->execute();
+    }
+
+    public function Pesquisar($busca)
+    {
+        $sql = "SELECT * FROM REFERENCIAS WHERE NOME like '%$busca%' ";
+        $resultado = $this->conexao->query($sql);
+        $referencias = [];
+        
+        while ($row = $resultado->fetch_assoc()) {
+            array_push($referencias, $row);
+        }
+        return $referencias;
     }
 }
