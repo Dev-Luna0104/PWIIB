@@ -50,7 +50,7 @@ class disciplinasRepository {
 
     public function Editar($disciplina, $id )
     {
-        $sql = "UPDATE DISCIPLINAS set NOME = ? where ID = ?";
+        $sql = "UPDATE DISCIPLINAS set DISCIPLINA = ? where ID = ?";
                 $stmt = $this->conexao->prepare($sql);
                 $stmt->bind_param("si", $disciplina,$id);
                 $stmt->execute();
@@ -58,7 +58,7 @@ class disciplinasRepository {
 
     public function Pesquisar($busca)
     {
-        $sql = "SELECT * FROM DISCIPLINAS WHERE NOME like '%$busca%' ";
+        $sql = "SELECT * FROM DISCIPLINAS WHERE DISCIPLINA like '%$busca%' ";
         $resultado = $this->conexao->query($sql);
         $disciplinas = [];
         
