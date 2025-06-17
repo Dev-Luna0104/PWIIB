@@ -47,6 +47,7 @@
         <ul class="dropdown-menu">
           <li><a href="./disciplinas.php" class="dropdown-item">Disciplinas</a></li>
           <li><a href="./referencias.php" class="dropdown-item">Referencias</a></li>
+          <li><a class="dropdown-item" href="perguntas.php" > Perguntas</a></li>
         </ul>
       </li>
 
