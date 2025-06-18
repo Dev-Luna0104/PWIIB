@@ -11,6 +11,6 @@
     </div>
 </footer>
 
-    <script src="./componentes/bootstrap.bundle.min.js" ></script>
 </body>
 </html>
+<script src="./componentes/bootstrap.bundle.min.js" ></script>

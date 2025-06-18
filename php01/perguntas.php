@@ -33,7 +33,7 @@
              <form action="perguntas.php" method="get">
                 <div class="row">
                         <div class="col-4">
-                            <a href="pergunta_novo.php" class="btn btn-success">
+                            <a href="perguntas_novo.php" class="btn btn-success">
                                 Novo
                             </a>
                         </div>
@@ -87,5 +87,5 @@
 </div>
 <?php
 
-    include "./componentes/footer.php"; 
+    include "./componentes/footer.php"
 ?>
