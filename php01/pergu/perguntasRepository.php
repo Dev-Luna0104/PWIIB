@@ -51,7 +51,7 @@ class PerguntaRepository {
     {
         $sql = "UPDATE PERGUNTAS set PERGUNTA = ?, ID_DISCIPLINA = ? where ID = ?";
                 $stmt = $this->conexao->prepare($sql);
-                $stmt->bind_param("si", $PERGUNTA, ID_DISCIPLINA , $id);
+                $stmt->bind_param("sii", $PERGUNTA, $ID_DISCIPLINA, $id);
                 $stmt->execute();
     }
 

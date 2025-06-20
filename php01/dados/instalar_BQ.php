@@ -68,8 +68,11 @@ $sql_insert = "INSERT INTO USUARIOS (LOGIN, SENHA) VALUES
     ('MURILLO DE PAULA PEREIRA', '123senha'),
     ('RYAN ROBIN VELOSO DE MATOS', '123senha'),
     ('VITORIA FERNANDA FERRARI DA SILVA', '123senha'),
-    ('YURI RAFAEL DA SILVA SANTO', '123senha')
-    ;";
+    ('YURI RAFAEL DA SILVA SANTO', '123senha');
+INSERT INTO DISCIPLINAS (DISCIPLINA) VALUEs
+    ('MATEMATICA'),
+    ('PORTUGUÉS');
+";
 
 // Executando a inserção
 if ($conexao->query($sql_insert)) {

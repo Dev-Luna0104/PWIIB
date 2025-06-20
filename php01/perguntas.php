@@ -2,12 +2,12 @@
     include "componentes/header.php"; 
     include "dados/conexao.php";
     require_once './disci/disciplinasRepository.php';
-    require_once './refe/referenciasRepository.php';
+    require_once './pergu/perguntasRepository.php';
 
     //Crio um objeto do tipo DisciplinaRepository chamado repo
     //E recebe a conexão como parametro
     $repoDisciplina = new disciplinasRepository($conexao);
-    $repo = new referenciasRepository($conexao);
+    $repo = new PerguntaRepository($conexao);
 
     if( isset($_GET['busca']) && !empty($_GET['busca']) )
     {
@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                         <?php
-                           
+                        
                             foreach ($obj as $row) {
                                 echo
                                    "<tr>
@@ -68,12 +68,12 @@
                                         <td>".$row['PERGUNTA']."</td>
                                         <td>".$row['ID_DISCIPLINA']."</td>
                                         <td>
-                                         <a class='btn btn-primary'
+                                         <a clasws='btn btn-primary'
                                                  href='pergunta_add_alternativa.php?id=".$row['ID']."'>Alternativas</a>
                                             <a class='btn btn-danger'
-                                                 href='pergunta_excluir.php?id=".$row['ID']."'>Excluir</a>
+                                                 href='./pergu/perguntas_excluir.php?id=".$row['ID']."'>Excluir</a>
                                             <a class='btn btn-warning'
-                                                 href='pergunta_editar.php?id=".$row['ID']."'>Editar</a>
+                                                 href='./perguntas_editar.php?id=".$row['ID']."'>Editar</a>
                                         </td> 
                                     </tr>";
                             }

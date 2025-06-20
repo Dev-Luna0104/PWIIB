@@ -1,15 +1,24 @@
 <?php
-
 include "../dados/conexao.php";
-require_once "disciplinasRepository.php";
-$repo = new disciplinasRepository($conexao);
+require_once "perguntasRepository.php";
 
-if (isset($_POST["salvar_disciplinas"])) {
-  
+$repo = new PerguntaRepository($conexao);
 
-    $repo->Inserir($_POST['disciplina']);
-    header('location: ../disciplinas.php');
-}else{
-    header('location: ../disciplinas.php');}
+// Verifica se o formulário foi enviado corretamente
+if (isset($_POST["salvar_pergunta"])) {
+    $pergunta = $_POST['PERGUNTA'] ?? '';
+    $id_disciplina = $_POST['id_disciplina'] ?? null;
 
+    // Validação básica
+    if (!empty($pergunta) && !empty($id_disciplina)) {
+        $repo->Inserir($pergunta, $id_disciplina);
+    }
+
+    // Redireciona de qualquer forma para a tela de perguntas
+    header('Location: ../perguntas.php');
+    exit;
+} else {
+    header('Location: ../perguntas.php');
+    exit;
+}
 ?>

@@ -1,6 +1,10 @@
 <?php   
     include "componentes/header.php"; 
     include "./dados/conexao.php";
+
+    
+    require_once './disci/disciplinasRepository.php';
+    $repo = new disciplinasRepository($conexao);
 ?>
 <div class="row">
     <div class="col-6 offset-3">
@@ -9,7 +13,7 @@
                 Cadastro de perguntas
             </div>
             <div class="card-body">
-                <form action="pergunta_salvar.php" method="post">
+                <form action="./pergu/perguntas_salvar.php" method="post">
                         
                     <label>Pergunta</label>
                     <textarea name="PERGUNTA" class="form-control"></textarea>
@@ -17,8 +21,7 @@
                     <label>Disciplina</label>
                     <select name="id_disciplina" class="form-control" >
                         <?php
-                            require_once './disci/disciplinasRepository.php';
-                            $repo = new disciplinasRepository($conexao);
+
 
                             foreach ($repo->buscarTodos() as $item  ) {
                                 echo "<option value='$item[ID]'> $item[DISCIPLINA] </option>";
