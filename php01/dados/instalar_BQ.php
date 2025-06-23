@@ -2,91 +2,94 @@
 
 include "conexao.php";
 
-$sql = "CREATE TABLE IF NOT EXISTS USUARIOS (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    LOGIN VARCHAR(50) NOT NULL,
-    SENHA VARCHAR(80) NOT NULL,
-    ATIVO BIT DEFAULT 1
-);";
 
-$conexao->query($sql); $sql=
-"CREATE TABLE REFERENCIAS (
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    NOME VARCHAR(100) NOT NULL
-);"
-;$conexao->query($sql); $sql=
-"CREATE TABLE DISCIPLINAS(
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    DISCIPLINA VARCHAR(100)        
-);"
-;$conexao->query($sql); $sql=
-"CREATE TABLE PERGUNTAS(
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    PERGUNTA TEXT NOT NULL,
-    ID_DISCIPLINA INT,
-    CONSTRAINT FK_DISCIPLINA FOREIGN KEY (ID_DISCIPLINA) 
-        REFERENCES DISCIPLINAS(ID)
-);"
-;$conexao->query($sql); $sql=
-"CREATE TABLE ALTERNATIVAS(
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    ID_PERGUNTA INT,
-    CORRETA BIT,
-    ALTERNATIVA TEXT NOT NULL,
-    CONSTRAINT FK_PERGUNTAS FOREIGN KEY(ID_PERGUNTA)
-        REFERENCES PERGUNTAS(ID)
-);"
-;$conexao->query($sql); $sql=
-"CREATE TABLE REF_PERGUNTAS(
-    ID INT PRIMARY KEY AUTO_INCREMENT,
-    ID_PERGUNTA INT,
-    ID_REF INT,
-    CONSTRAINT FK_PERGUNTA FOREIGN KEY (ID_PERGUNTA) REFERENCES PERGUNTAS(ID),
-    CONSTRAINT FK_REF FOREIGN KEY (ID_REF) REFERENCES REFERENCIAS(ID)
-);";
+$tabelas = [
+
+    "CREATE TABLE IF NOT EXISTS USUARIOS (
+        ID INT PRIMARY KEY AUTO_INCREMENT,
+        LOGIN VARCHAR(50) NOT NULL,
+        SENHA VARCHAR(255) NOT NULL,
+        ATIVO BIT DEFAULT 1
+    )",
+
+    "CREATE TABLE IF NOT EXISTS REFERENCIAS (
+        ID INT PRIMARY KEY AUTO_INCREMENT,
+        NOME VARCHAR(100) NOT NULL
+    )",
+
+    "CREATE TABLE IF NOT EXISTS DISCIPLINAS (
+        ID INT PRIMARY KEY AUTO_INCREMENT,
+        DISCIPLINA VARCHAR(100) NOT NULL
+    )",
+
+    "CREATE TABLE IF NOT EXISTS PERGUNTAS (
+        ID INT PRIMARY KEY AUTO_INCREMENT,
+        PERGUNTA TEXT NOT NULL,
+        ID_DISCIPLINA INT,
+        CONSTRAINT FK_DISCIPLINA FOREIGN KEY (ID_DISCIPLINA) REFERENCES DISCIPLINAS(ID)
+    )",
+
+    "CREATE TABLE alternativas (
+        ID INT AUTO_INCREMENT PRIMARY KEY,
+        ID_PERGUNTA INT NOT NULL,
+        TEXTO VARCHAR(255) NOT NULL,
+        CORRETA BOOLEAN NOT NULL DEFAULT 0,
+        FOREIGN KEY (ID_PERGUNTA) REFERENCES perguntas(ID)
+    )",
+
+    "CREATE TABLE IF NOT EXISTS REF_PERGUNTAS (
+        ID INT PRIMARY KEY AUTO_INCREMENT,
+        ID_PERGUNTA INT,
+        ID_REF INT,
+        CONSTRAINT FK_PERGUNTA FOREIGN KEY (ID_PERGUNTA) REFERENCES PERGUNTAS(ID),
+        CONSTRAINT FK_REF FOREIGN KEY (ID_REF) REFERENCES REFERENCIAS(ID)
+    )"
+];
 
 
-if ($conexao->query($sql)) {
-    header('location: ../usuarios.php') ;
-} else {
-    echo "Erro ao criar a tabela: " . $conexao->error . "<br>";
+foreach ($tabelas as $sql) {
+    if (!$conexao->query($sql)) {
+        echo "Erro ao criar a tabela: " . $conexao->error . "<br>";
+    }
 }
 
+// Inserção dos usuários (com senhas seguras)
+$usuarios = [
+    'ADMIN',
+    'FELIPE MATHEUS YOSHIDA LAZARI',
+    'LEONEL FRANCISCO DAMIAO',
+    'LUCAS MATHEUS DE SOUZA DOS SANTOS',
+    'LUÍS FELIPE GAZIRO GOMES',
+    'MARLI EVANGELISTA',
+    'MATHEUS DA CRUZ SAITU HIGA',
+    'MATHEUS LUNA CAMARGO',
+    'MATHEUS SELEGHIN ALEXANDRE',
+    'MURILLO DE PAULA PEREIRA',
+    'RYAN ROBIN VELOSO DE MATOS',
+    'VITORIA FERNANDA FERRARI DA SILVA',
+    'YURI RAFAEL DA SILVA SANTO'
+];
 
-//////////////////////////// BLOCO PARA INSERIR USUARIO////////////////////////////
-// Inserindo uma linha na tabela
-$sql_insert = "INSERT INTO USUARIOS (LOGIN, SENHA) VALUES 
-    ('ADMIN','123'),
-    ('FELIPE MATHEUS YOSHIDA LAZARI', '123senha'),		
-    ('LEONEL FRANCISCO DAMIAO', '123senha'),
-    ('LUCAS MATHEUS DE SOUZA DOS SANTOS', '123senha'),
-    ('LUÍS FELIPE GAZIRO GOMES', '123senha'),
-    ('MARLI EVANGELISTA', '123senha'),
-    ('MATHEUS DA CRUZ SAITU HIGA', '123senha'),
-    ('MATHEUS LUNA CAMARGO', '123senha'),
-    ('MATHEUS SELEGHIN ALEXANDRE', '123senha'),
-    ('MURILLO DE PAULA PEREIRA', '123senha'),
-    ('RYAN ROBIN VELOSO DE MATOS', '123senha'),
-    ('VITORIA FERNANDA FERRARI DA SILVA', '123senha'),
-    ('YURI RAFAEL DA SILVA SANTO', '123senha');
-INSERT INTO DISCIPLINAS (DISCIPLINA) VALUEs
-    ('MATEMATICA'),
-    ('PORTUGUÉS');
-";
-
-// Executando a inserção
-if ($conexao->query($sql_insert)) {
-    echo "Nova linha inserida com sucesso.<br>";
-} else {
-    echo "Erro ao inserir dados: " . $conexao->error . "<br>";
+foreach ($usuarios as $login) {
+    $senha = password_hash('123senha', PASSWORD_DEFAULT);
+    $stmt = $conexao->prepare("INSERT INTO USUARIOS (LOGIN, SENHA) VALUES (?, ?)");
+    $stmt->bind_param("ss", $login, $senha);
+    $stmt->execute();
 }
-///////////////////////////FIM DO BLOCO PARA INSERIR USUARIO///////////////////////
 
-// Fechando a conexão
-$conexao->close();
+// disciplinas
+$disciplinas = ['MATEMATICA', 'PORTUGUÉS'];
 
+foreach ($disciplinas as $disc) {
+    $stmt = $conexao->prepare("INSERT INTO DISCIPLINAS (DISCIPLINA) VALUES (?)");
+    $stmt->bind_param("s", $disc);
+    $stmt->execute();
+}
 
+echo "Tabelas criadas e dados inseridos com sucesso.<br>";
 
-
+// Redireciona após tudo estar concluído
+header("Location: ../usuarios.php");
+exit;
 
 ?>
