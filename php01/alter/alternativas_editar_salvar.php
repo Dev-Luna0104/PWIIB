@@ -4,15 +4,11 @@ require_once "./alternativasRepository.php";
 
 $repo = new AlternativaRepository($conexao);
 
-$texto = $_POST['texto'];
+$id = $_POST['id'];
 $idPergunta = $_POST['id_pergunta'];
+$texto = $_POST['texto'];
 $correta = $_POST['correta'] == "1" ? 1 : 0;
 
-// opcional: proteger contra palavras perigosas
-if (preg_match('/drop|delete|truncate|--/i', $texto)) {
-    die("Alternativa inválida.");
-}
-
-$repo->inserir($idPergunta, $texto, $correta);
+$repo->editar($id, $texto, $correta);
 
 header("Location: ../alternativas.php?id=" . $idPergunta);

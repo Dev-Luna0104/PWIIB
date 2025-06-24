@@ -66,7 +66,7 @@
                                    "<tr>
                                         <td>".$row['ID']."</td>
                                         <td>".$row['PERGUNTA']."</td>
-                                        <td>".$row['ID_DISCIPLINA']."</td>
+                                        <td>".$row['DISCIPLINA']."</td>
                                         <td>
                                          <a clasws='btn btn-primary'
                                                  href='alternativas.php?id=".$row['ID']."'>Alternativas</a>
