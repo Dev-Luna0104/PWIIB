@@ -71,7 +71,7 @@ $usuarios = [
 ];
 
 foreach ($usuarios as $login) {
-    $senha = password_hash('123senha', PASSWORD_DEFAULT);
+    $senha = password_hash('123', PASSWORD_DEFAULT);
     $stmt = $conexao->prepare("INSERT INTO USUARIOS (LOGIN, SENHA) VALUES (?, ?)");
     $stmt->bind_param("ss", $login, $senha);
     $stmt->execute();
